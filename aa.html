@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Keto-Diät Nährwertrechner</title>
+    <style>
+       body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f8f8;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+h1 {
+    color: #0f6d5e;
+}
+
+.container {
+    max-width: 700px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #0f6d5e;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    margin-right: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0a5048;
+}
+
+.summary, .individual-values {
+    background-color: #e7f6f2;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 4px;
+}
+
+.green { color: green; }
+.yellow { color: yellow; }
+.red { color: red; }
+
+    </style>
+</head>
+<body>
+    <h1>Keto-Diät Nährwertrechner</h1>
+    <p><strong>Anweisung:</strong> Wählen Sie ein Lebensmittel, geben Sie die Menge in Gramm ein und klicken Sie auf 'Hinzufügen'. Um die letzten hinzugefügten Werte zu entfernen, klicken Sie auf 'Letztes Entfernen'.</p>
+    <p>Empfohlene Makronährstoffverteilung in der Keto-Diät: <strong>70-80% Fett, 20-25% Protein, 5-10% Kohlenhydrate</strong></p>
+
+    <form id="foodForm">
+        <div class="food-item">
+            <label for="foodSelect">Lebensmittel:</label>
+            <select id="foodSelect">
+               <option value="almonds">Mandeln</option>
+                <option value="walnuts">Walnüsse</option>
+                <option value="macadamia">Macadamianüsse</option>
+                <option value="chia">Chiasamen</option>
+                <option value="flaxseeds">Leinsamen</option>
+                <option value="bellPepper">Paprika</option>
+                <option value="onions">Zwiebeln</option>
+                <option value="blueCheese">Blauschimmelkäse</option>
+                <option value="cream">Sahne</option>
+                <option value="cheddar">Cheddar</option>
+                <option value="gouda">Gouda</option>
+                <option value="brie">Brie</option>
+                <option value="camembert">Camembert</option>
+                <option value="mozzarella">Mozzarella</option>
+                <option value="raspberries">Himbeeren</option>
+                <option value="strawberries">Erdbeeren</option>
+                <option value="blueberries">Blaubeeren</option>
+                <option value="babybel">Roter Babybel Käse</option>
+                <option value="almondMilk">Ungesüßte Mandelmilch</option>
+                <option value="coconutMilk">Kokosmilch</option>
+                <option value="spinach">Spinat</option>
+                <option value="kale">Grünkohl</option>
+                <option value="zucchini">Zucchini</option>
+                <option value="cauliflower">Blumenkohl</option>
+                <option value="asparagus">Spargel</option>
+                <option value="mushrooms">Pilze</option>
+                <option value="chickenLegs">Hähnchenschenkel</option>
+                <option value="chickenWings">Hähnchenflügel</option>
+                <option value="chickenBreast">Hähnchenbrust</option>
+                <option value="eggs">Eier</option>
+                <option value="butter">Butter</option>
+                <option value="tomatoes">Tomaten</option>
+                <option value="lettuce">Salatblätter</option>
+                <option value="mayonnaise">Mayonnaise</option>
+                <option value="steak">Steak</option>
+                <option value="mincedMeat">Hackfleisch</option>
+                <option value="milk">Milch 3,8%</option>
+                <option value="broccoli">Brokkoli</option>
+                <option value="olives">Oliven</option>
+                <option value="fetaCheese">Fetakäse</option>
+                <option value="orangeJuice">Orangensaft</option>
+                <option value="yogurt">Naturjoghurt</option>
+                <option value="oliveOil">Olivenöl</option>
+                <option value="avocado">Avocado</option>
+                <option value="tuna">Thunfischkonserven in Olivenöl</option>
+                <option value="salmon">Lachs</option>
+
+                <!-- Weitere Lebensmittel hier hinzufügen -->
+            </select>
+            <input type="number" id="foodAmount" name="foodAmount" min="0" value="0"><br>
+            <button type="button" onclick="addToSummary()">Hinzufügen</button>
+            <button type="button" onclick="removeLast()">Letztes Entfernen</button>
+        </div>
+    </form>
+
+    <div class="individual-values">
+        <h3>Einzelnährwerte:</h3>
+        <p>Einzeln Kohlenhydrate: <span id="individualCarbs">0</span> g</p>
+        <p>Einzeln Protein: <span id="individualProtein">0</span> g</p>
+        <p>Einzeln Fett: <span id="individualFat">0</span> g</p>
+    </div>
+
+    <button type="button" onclick="calculatePercentages()">Prozente Berechnen</button>
+
+    <h3>Tägliche Zusammenfassung:</h3>
+    <div class="summary">
+        <p>Gesamtkohlenhydrate: <span id="totalCarbs">0</span> g</p>
+        <p>Gesamtprotein: <span id="totalProtein">0</span> g</p>
+        <p>Gesamtfett: <span id="totalFat">0</span> g</p>
+        <p>Prozentsatz Kohlenhydrate: <span id="percentCarbs" class="green">0</span>%</p>
+        <p>Prozentsatz Protein: <span id="percentProtein" class="green">0</span>%</p>
+        <p>Prozentsatz Fett: <span id="percentFat" class="green">0</span>%</p>
+    </div>
+
+    <script>
+        var totalCarbs = 0, totalProtein = 0, totalFat = 0;
+        var lastAddedCarbs = 0, lastAddedProtein = 0, lastAddedFat = 0;
+
+        function calculateNutrients() {
+            var selectedFood = document.getElementById("foodSelect").value;
+            var amount = document.getElementById("foodAmount").value || 0;
+            var foodData = {
+                "almonds": { carbs: 22, protein: 21, fat: 49 },
+                "walnuts": { carbs: 14, protein: 15, fat: 65 },
+                "macadamia": { carbs: 14, protein: 8, fat: 76 },
+                "chia": { carbs: 42, protein: 17, fat: 31 },
+                "flaxseeds": { carbs: 29, protein: 18, fat: 42 },
+                "bellPepper": { carbs: 6, protein: 1, fat: 0.3 },
+                "onions": { carbs: 9, protein: 1.1, fat: 0.1 },
+                "blueCheese": { carbs: 2, protein: 21, fat: 28 },
+                "cream": { carbs: 4, protein: 3, fat: 37 },
+                "cheddar": { carbs: 1.3, protein: 25, fat: 33 },
+                "gouda": { carbs: 2.2, protein: 25, fat: 27 },
+                "brie": { carbs: 0.5, protein: 21, fat: 28 },
+                "camembert": { carbs: 0.5, protein: 20, fat: 24 },
+                "mozzarella": { carbs: 3.1, protein: 28, fat: 17 },
+                "raspberries": { carbs: 12, protein: 1.2, fat: 0.7 },
+                "strawberries": { carbs: 8, protein: 0.7, fat: 0.3 },
+                "blueberries": { carbs: 14, protein: 0.7, fat: 0.4 },
+                "babybel": { carbs: 0, protein: 25, fat: 20 },
+                "almondMilk": { carbs: 0.3, protein: 0.5, fat: 1.1 },
+                "coconutMilk": { carbs: 5, protein: 2, fat: 24 },
+                "spinach": { carbs: 3.6, protein: 2.9, fat: 0.4 },
+                "kale": { carbs: 9, protein: 4.3, fat: 1.5 },
+                "zucchini": { carbs: 3.1, protein: 2.7, fat: 0.4 },
+                "cauliflower": { carbs: 5, protein: 1.9, fat: 0.3 },
+                "asparagus": { carbs: 3.9, protein: 2.2, fat: 0.2 },
+                "mushrooms": { carbs: 3.3, protein: 3.1, fat: 0.3 },
+                "chickenLegs": { carbs: 0, protein: 24, fat: 14 },
+                "chickenWings": { carbs: 0, protein: 30, fat: 15 },
+                "chickenBreast": { carbs: 0, protein: 31, fat: 3.6 },
+                "eggs": { carbs: 1.1, protein: 13, fat: 11 },
+                "butter": { carbs: 0.1, protein: 0.9, fat: 83 },
+                "tomatoes": { carbs: 3.9, protein: 0.9, fat: 0.2 },
+                "lettuce": { carbs: 2.9, protein: 1.4, fat: 0.2 },
+                "mayonnaise": { carbs: 0.6, protein: 0.9, fat: 75 },
+                "steak": { carbs: 0, protein: 25, fat: 19 },
+                "mincedMeat": { carbs: 0, protein: 17, fat: 14 },
+                "milk": { carbs: 4.7, protein: 3.4, fat: 3.8 },
+                "broccoli": { carbs: 7, protein: 2.8, fat: 0.4 },
+                "olives": { carbs: 6, protein: 0.8, fat: 15 },
+                "fetaCheese": { carbs: 4, protein: 14, fat: 21 },
+                "orangeJuice": { carbs: 10, protein: 0.7, fat: 0.2 },
+                "yogurt": { carbs: 4, protein: 10, fat: 5 },
+                "oliveOil": { carbs: 0, protein: 0, fat: 100 },
+                "avocado": { carbs: 9, protein: 2, fat: 15 },
+                "tuna": { carbs: 0, protein: 29, fat: 8 },
+                "salmon": { carbs: 0, protein: 20, fat: 13 },
+            };
+
+            var selectedFoodData = foodData[selectedFood];
+            var carbs = (selectedFoodData.carbs * amount) / 100;
+            var protein = (selectedFoodData.protein * amount) / 100;
+            var fat = (selectedFoodData.fat * amount) / 100;
+
+            return { carbs, protein, fat };
+        }
+
+        function addToSummary() {
+            var nutrients = calculateNutrients();
+            totalCarbs += nutrients.carbs;
+            totalProtein += nutrients.protein;
+            totalFat += nutrients.fat;
+
+            lastAddedCarbs = nutrients.carbs;
+            lastAddedProtein = nutrients.protein;
+            lastAddedFat = nutrients.fat;
+
+            updateIndividualValues(nutrients.carbs, nutrients.protein, nutrients.fat);
+        }
+
+        function removeLast() {
+            totalCarbs -= lastAddedCarbs;
+            totalProtein -= lastAddedProtein;
+            totalFat -= lastAddedFat;
+
+            lastAddedCarbs = 0;
+            lastAddedProtein = 0;
+            lastAddedFat = 0;
+
+            updateSummary();
+        }
+
+        function calculatePercentages() {
+            var totalAmount = totalCarbs + totalProtein + totalFat;
+            if (totalAmount > 0) {
+                var percentCarbs = (totalCarbs / totalAmount) * 100;
+                var percentProtein = (totalProtein / totalAmount) * 100;
+                var percentFat = (totalFat / totalAmount) * 100;
+
+                updateSummary();
+                updatePercentages(percentCarbs, percentProtein, percentFat);
+                updatePercentageColor("percentCarbs", percentCarbs, 5, 10); // Kohlenhydrate: 5-10%
+                updatePercentageColor("percentProtein", percentProtein, 20, 25); // Protein: 20-25%
+                updatePercentageColor("percentFat", percentFat, 70, 80); // Fett: 70-80%
+            } else {
+                alert("Keine Daten zur Berechnung der Prozentsätze vorhanden.");
+            }
+        }
+
+        function updateIndividualValues(carbs, protein, fat) {
+            document.getElementById("individualCarbs").textContent = carbs.toFixed(2);
+            document.getElementById("individualProtein").textContent = protein.toFixed(2);
+            document.getElementById("individualFat").textContent = fat.toFixed(2);
+        }
+
+        function updateSummary() {
+            document.getElementById("totalCarbs").textContent = totalCarbs.toFixed(2);
+            document.getElementById("totalProtein").textContent = totalProtein.toFixed(2);
+            document.getElementById("totalFat").textContent = totalFat.toFixed(2);
+        }
+
+        function updatePercentages(carbs, protein, fat) {
+            document.getElementById("percentCarbs").textContent = carbs.toFixed(2);
+            document.getElementById("percentProtein").textContent = protein.toFixed(2);
+            document.getElementById("percentFat").textContent = fat.toFixed(2);
+        }
+
+        function updatePercentageColor(elementId, value, min, max) {
+            var element = document.getElementById(elementId);
+            if (value >= min && value <= max) {
+                element.className = "green";
+            } else if (value > max && value <= max + 5) { // 5% Toleranz
+                element.className = "yellow";
+            } else {
+                element.className = "red";
+            }
+        }
+    </script>
+</body>
+</html>
