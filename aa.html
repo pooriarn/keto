@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Keto-Diät Nährwertrechner</title>
+    <title>Keto-DiÃ¤t NÃ¤hrwertrechner</title>
     <style>
        body {
     font-family: 'Arial', sans-serif;
@@ -65,22 +65,22 @@ button:hover {
     </style>
 </head>
 <body>
-    <h1>Keto-Diät Nährwertrechner</h1>
-    <p><strong>Anweisung:</strong> Wählen Sie ein Lebensmittel, geben Sie die Menge in Gramm ein und klicken Sie auf 'Hinzufügen'. Um die letzten hinzugefügten Werte zu entfernen, klicken Sie auf 'Letztes Entfernen'.</p>
-    <p>Empfohlene Makronährstoffverteilung in der Keto-Diät: <strong>70-80% Fett, 20-25% Protein, 5-10% Kohlenhydrate</strong></p>
+    <h1>Keto-DiÃ¤t NÃ¤hrwertrechner</h1>
+    <p><strong>Anweisung:</strong> WÃ¤hlen Sie ein Lebensmittel, geben Sie die Menge in Gramm ein und klicken Sie auf 'HinzufÃ¼gen'. Um die letzten hinzugefÃ¼gten Werte zu entfernen, klicken Sie auf 'Letztes Entfernen'.</p>
+    <p>Empfohlene MakronÃ¤hrstoffverteilung in der Keto-DiÃ¤t: <strong>70-80% Fett, 20-25% Protein, 5-10% Kohlenhydrate</strong></p>
 
     <form id="foodForm">
         <div class="food-item">
             <label for="foodSelect">Lebensmittel:</label>
             <select id="foodSelect">
                <option value="almonds">Mandeln</option>
-                <option value="walnuts">Walnüsse</option>
-                <option value="macadamia">Macadamianüsse</option>
+                <option value="walnuts">WalnÃ¼sse</option>
+                <option value="macadamia">MacadamianÃ¼sse</option>
                 <option value="chia">Chiasamen</option>
                 <option value="flaxseeds">Leinsamen</option>
                 <option value="bellPepper">Paprika</option>
                 <option value="onions">Zwiebeln</option>
-                <option value="blueCheese">Blauschimmelkäse</option>
+                <option value="blueCheese">BlauschimmelkÃ¤se</option>
                 <option value="cream">Sahne</option>
                 <option value="cheddar">Cheddar</option>
                 <option value="gouda">Gouda</option>
@@ -90,46 +90,46 @@ button:hover {
                 <option value="raspberries">Himbeeren</option>
                 <option value="strawberries">Erdbeeren</option>
                 <option value="blueberries">Blaubeeren</option>
-                <option value="babybel">Roter Babybel Käse</option>
-                <option value="almondMilk">Ungesüßte Mandelmilch</option>
+                <option value="babybel">Roter Babybel KÃ¤se</option>
+                <option value="almondMilk">UngesÃ¼ÃŸte Mandelmilch</option>
                 <option value="coconutMilk">Kokosmilch</option>
                 <option value="spinach">Spinat</option>
-                <option value="kale">Grünkohl</option>
+                <option value="kale">GrÃ¼nkohl</option>
                 <option value="zucchini">Zucchini</option>
                 <option value="cauliflower">Blumenkohl</option>
                 <option value="asparagus">Spargel</option>
                 <option value="mushrooms">Pilze</option>
-                <option value="chickenLegs">Hähnchenschenkel</option>
-                <option value="chickenWings">Hähnchenflügel</option>
-                <option value="chickenBreast">Hähnchenbrust</option>
+                <option value="chickenLegs">HÃ¤hnchenschenkel</option>
+                <option value="chickenWings">HÃ¤hnchenflÃ¼gel</option>
+                <option value="chickenBreast">HÃ¤hnchenbrust</option>
                 <option value="eggs">Eier</option>
                 <option value="butter">Butter</option>
                 <option value="tomatoes">Tomaten</option>
-                <option value="lettuce">Salatblätter</option>
+                <option value="lettuce">SalatblÃ¤tter</option>
                 <option value="mayonnaise">Mayonnaise</option>
                 <option value="steak">Steak</option>
                 <option value="mincedMeat">Hackfleisch</option>
                 <option value="milk">Milch 3,8%</option>
                 <option value="broccoli">Brokkoli</option>
                 <option value="olives">Oliven</option>
-                <option value="fetaCheese">Fetakäse</option>
+                <option value="fetaCheese">FetakÃ¤se</option>
                 <option value="orangeJuice">Orangensaft</option>
                 <option value="yogurt">Naturjoghurt</option>
-                <option value="oliveOil">Olivenöl</option>
+                <option value="oliveOil">OlivenÃ¶l</option>
                 <option value="avocado">Avocado</option>
-                <option value="tuna">Thunfischkonserven in Olivenöl</option>
+                <option value="tuna">Thunfischkonserven in OlivenÃ¶l</option>
                 <option value="salmon">Lachs</option>
 
-                <!-- Weitere Lebensmittel hier hinzufügen -->
+                <!-- Weitere Lebensmittel hier hinzufÃ¼gen -->
             </select>
             <input type="number" id="foodAmount" name="foodAmount" min="0" value="0"><br>
-            <button type="button" onclick="addToSummary()">Hinzufügen</button>
+            <button type="button" onclick="addToSummary()">HinzufÃ¼gen</button>
             <button type="button" onclick="removeLast()">Letztes Entfernen</button>
         </div>
     </form>
 
     <div class="individual-values">
-        <h3>Einzelnährwerte:</h3>
+        <h3>EinzelnÃ¤hrwerte:</h3>
         <p>Einzeln Kohlenhydrate: <span id="individualCarbs">0</span> g</p>
         <p>Einzeln Protein: <span id="individualProtein">0</span> g</p>
         <p>Einzeln Fett: <span id="individualFat">0</span> g</p>
@@ -137,7 +137,7 @@ button:hover {
 
     <button type="button" onclick="calculatePercentages()">Prozente Berechnen</button>
 
-    <h3>Tägliche Zusammenfassung:</h3>
+    <h3>TÃ¤gliche Zusammenfassung:</h3>
     <div class="summary">
         <p>Gesamtkohlenhydrate: <span id="totalCarbs">0</span> g</p>
         <p>Gesamtprotein: <span id="totalProtein">0</span> g</p>
@@ -249,7 +249,7 @@ button:hover {
                 updatePercentageColor("percentProtein", percentProtein, 20, 25); // Protein: 20-25%
                 updatePercentageColor("percentFat", percentFat, 70, 80); // Fett: 70-80%
             } else {
-                alert("Keine Daten zur Berechnung der Prozentsätze vorhanden.");
+                alert("Keine Daten zur Berechnung der ProzentsÃ¤tze vorhanden.");
             }
         }
 
